@@ -10,11 +10,14 @@ bank_database:list[dict] = [
 
 def chat_with_bank_agent(message:str , previous_messages:list , account_number:str):
     # Simulate a response from the bank agent
+    
     account_details = None
+    
     for bank_info in bank_database:
         if bank_info["account_number"] == account_number:
             account_details = bank_info
             break
+    
     if account_details is None:
         return "Account not found."
     
@@ -25,9 +28,6 @@ def chat_with_bank_agent(message:str , previous_messages:list , account_number:s
     '''
    
     return chat_with_agent(message , previous_messages , system_message)
-
-
-
 
 def chat_with_agent(message:str , previous_messages:list , system_message:str = "You are a helpful assistant."):
     # Simulate a response from the agent
@@ -49,8 +49,5 @@ def chat_with_agent(message:str , previous_messages:list , system_message:str = 
     stream=False,
     stop=None
     )
-    
     result = completion.choices[0].message.content
-    
-
     return result
